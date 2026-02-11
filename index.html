@@ -8,8 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
         rel="stylesheet">
-    <link rel="preload" href="/assets/pdf/115上國小健康與體育中年級簡介本.pdf" as="fetch" crossorigin>
-    <link rel="preload" href="/assets/pdf/115上國小綜合活動中年級簡介本.pdf" as="fetch" crossorigin>
+    <link rel="preload" href="./assets/pdf/115上國小健康與體育中年級簡介本.pdf" as="fetch" crossorigin>
+    <link rel="preload" href="./assets/pdf/115上國小綜合活動中年級簡介本.pdf" as="fetch" crossorigin>
     <style>
         :root {
             --primary: #37A061;
@@ -113,7 +113,7 @@
 
         /* BG */
         .page_1 {
-            background-image: url(/assets/page/nani_homepage_bg-1.png);
+            background-image: url(./assets/page/nani_homepage_bg-1.png);
             background-size: 55% auto;
             background-repeat: no-repeat;
             background-position: 0 0;
@@ -410,7 +410,7 @@
             </button>
 
             <!-- 右上裝飾圖（如果你要保留） -->
-            <img src="/assets/page/nani_homepage_1.png" alt=""
+            <img src="./assets/page/nani_homepage_1.png" alt=""
                 class="hidden md:block absolute w-[300px] top-[10px] right-[-20px] pointer-events-none" />
         </nav>
 
@@ -446,20 +446,20 @@
             <!-- Section 1: Intro -->
             <section class="grid lg:grid-cols-2 md:grid-cols-1 gap-8 md:gap-20 mt-6">
                 <div class="mt-6">
-                    <h1 class="title-cp heading1"><img src="/assets/page/nani_homepage_title.png" alt=""
+                    <h1 class="title-cp heading1"><img src="./assets/page/nani_homepage_title.png" alt=""
                             class="titleImg"><span class="sd">教材</span><span class="pr">簡介本</span></h1>
                     <p>融入生活情境! 結合學習與生活。例如生日派對情境佈題、選美大會等等，讓孩子身歷其境！</p>
 
                 </div>
                 <div class="relative mb-6 p-6 md:p-8 rounded-[50px] cardBox bg-white/80 ">
                     <div class="flex flex-col md:flex-row md:items-center gap-4 box_1 gap-6">
-                        <img src="/assets/resources/115上國小健康與體育中年級簡介本.jpg" alt="" class="cover cursor-pointer"
+                        <img src="./assets/resources/115上國小健康與體育中年級簡介本.jpg" alt="" class="cover cursor-pointer"
                             data-target="#introSection">
 
-                        <img src="/assets/resources/115上國小綜合活動高年級簡介本.jpg" alt="" class="cover cursor-pointer"
+                        <img src="./assets/resources/115上國小綜合活動高年級簡介本.jpg" alt="" class="cover cursor-pointer"
                             data-target="#packSection">
 
-                        <img src="/assets/page/nani_homepage_leaf_1.png" alt="" class="boxDecro">
+                        <img src="./assets/page/nani_homepage_leaf_1.png" alt="" class="boxDecro">
                     </div>
                 </div>
             </section>
@@ -467,7 +467,7 @@
                 <div class="relative mb-6 p-6 md:p-8 rounded-[40px] border-4 border-white bg-white/80 shadow-md">
                     <div class="flex flex-col md:flex-row md:items-center gap-4">
                         <div class="flex items-center gap-3">
-                            <img src="/assets/page/nani_homepage_icon_star.png" alt="" class="pill-img">
+                            <img src="./assets/page/nani_homepage_icon_star.png" alt="" class="pill-img">
                             <div class="pill-title">
                                 <h2 class="text-3xl md:text-4xl text-[#444] tracking-wide title-cp">教材簡介本</h2>
                             </div>
@@ -517,7 +517,7 @@
                 <div class="relative mb-6 p-6 md:p-8 rounded-[40px] border-4 border-white bg-white/80 shadow-md">
                     <div class="flex flex-col md:flex-row md:items-center gap-4">
                         <div class="flex items-center gap-3">
-                            <img src="/assets/page/nani_homepage_icon_star.png" alt="" class="pill-img">
+                            <img src="./assets/page/nani_homepage_icon_star.png" alt="" class="pill-img">
                             <div class="pill-title">
                                 <h2 class="text-3xl md:text-4xl text-[#444] tracking-wide title-cp">教材配套本</h2>
                             </div>
@@ -777,7 +777,7 @@ class PdfViewer {
 
 // ✅ 建立 viewer（想預設第 2 頁就 startPage: 2）
 const introViewer = new PdfViewer({
-  url: "/assets/pdf/115上國小健康與體育中年級簡介本.pdf",
+  url: "./assets/pdf/115上國小健康與體育中年級簡介本.pdf",
   readerId: "reader-intro",
   canvasId: "pdf-canvas-intro",
   pageInfoId: "pageInfo-intro",
@@ -787,7 +787,7 @@ const introViewer = new PdfViewer({
 });
 
 const packViewer = new PdfViewer({
-  url: "/assets/pdf/115上國小綜合活動高年級簡介本.pdf",
+  url: "./assets/pdf/115上國小綜合活動高年級簡介本.pdf",
   readerId: "reader-pack",
   canvasId: "pdf-canvas-pack",
   pageInfoId: "pageInfo-pack",
