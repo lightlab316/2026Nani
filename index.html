@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南一教材博覽會</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="preload" href="/assets/pdf/115上國小健康與體育中年級簡介本.pdf" as="fetch" crossorigin>
+    <link rel="preload" href="/assets/pdf/115上國小綜合活動中年級簡介本.pdf" as="fetch" crossorigin>
+    <style>
+        :root {
+            --primary: #37A061;
+            --secondary: #E27050;
+            --border-light: #B7DDC5;
+        }
+
+        @font-face {
+            font-family: 'CP Font';
+            src: url('/fonts/CP\ Font.woff1') format('woff'),
+                url('/fonts/CP\ Font.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #d9f2e6;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        p {
+            font-size: 32px;
+            font-weight: 400;
+        }
+
+        /* Color */
+        .pr {
+            color: var(--primary);
+        }
+
+        .sd {
+            color: var(--secondary);
+        }
+
+        /* Font */
+
+        .heading1 {
+            font-size: 96px;
+        }
+
+        .title-cp {
+            font-family: 'CP Font';
+            font-weight: 300;
+        }
+
+        @media (max-width: 1024px) {
+            .heading1 {
+                font-size: 70px;
+            }
+
+            p {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {}
+
+        .header {
+            position: relative;
+        }
+
+        .header>img {
+            position: absolute;
+            width: 300px;
+            top: 20px;
+            right: -20px;
+        }
+
+        .custom-shadow {
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 8px 20px -6px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-btn.active {
+            background-color: white;
+            color: #46a17b;
+        }
+
+        .tab-btn.active.special {
+            background-color: #f08552;
+            color: white;
+        }
+
+        .leaf-animate {
+            animation: bounce 3s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* BG */
+        .page_1 {
+            background-image: url(/assets/page/nani_homepage_bg-1.png);
+            background-size: 55% auto;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+        }
+
+        /* Images/Icons */
+        .titleImg {
+            width: 90px;
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .cover {
+            width: 200px;
+            border-radius: 20px;
+            transition: all .5s;
+            box-shadow: 0 0 0 2px var(--border-light);
+            flex: 1;
+        }
+
+        .cover:hover {
+            box-shadow: 0 0 0 10px var(--border-light);
+        }
+
+        @media (max-width: 1024px) {
+            .titleImg {
+                width: 70px
+            }
+
+            ;
+
+            .cover {
+                width: 120px;
+            }
+        }
+
+        @media (max-width: 768px) {}
+
+        .box_1 {
+            position: relative;
+        }
+
+        .pill-title {
+            display: inline-block;
+            padding: 16px 48px;
+            background: #f5d05a;
+            /* 主黃色 */
+            border-radius: 999px;
+            font-weight: 600;
+            margin-left: 30px;
+            box-shadow:
+                0 10px 0 #f2b233,
+                /* 下方橘色厚邊 */
+                0 18px 20px rgba(242, 178, 51, 0.35);
+            /* 柔和陰影 */
+        }
+
+        .pill-img {
+            width: 70px;
+            position: absolute;
+            left: 30px;
+        }
+
+        .cardBox,
+        .shadowDef {
+            box-shadow: 0 0 4px 0 #00000050;
+        }
+
+        .boxDecro {
+            position: absolute;
+
+            left: -100px;
+            top: 150px;
+        }
+
+        @media (max-width: 1024px) {
+            .boxDecro {
+                width: 120px;
+            }
+        }
+
+        /* ===== Header pills (desktop) ===== */
+        .nav-pill {
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 1;
+            color: rgba(0, 0, 0, .75);
+            /* 設計稿：深色字 */
+            background: transparent;
+            transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+        }
+
+        .nav-pill:hover {
+            transform: translateY(-2px);
+            /* background: rgba(255,255,255,.18); */
+        }
+
+        .nav-pill--active {
+            background: rgba(234, 255, 242, .92);
+            /* 淡綠底 */
+            color: #1f7a55;
+            border: solid 2px #D5E3D4;
+        }
+
+        .nav-pill--special {
+            background: #E6744A;
+            /* 橘色膠囊 */
+            color: white;
+            border: solid 2px #D76740;
+        }
+
+        .nav-pill--special:hover {
+            background: #e07542;
+        }
+
+        /* ===== Drawer pills (mobile) ===== */
+        .drawer-pill {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 1;
+            background: rgba(255, 255, 255, .14);
+            color: rgba(0, 0, 0, .78);
+            transition: transform .18s ease, background .18s ease;
+        }
+
+        .drawer-pill:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, .22);
+        }
+
+        .drawer-pill--active {
+            background: rgba(234, 255, 242, .92);
+            color: #1f7a55;
+        }
+
+        .drawer-pill--special {
+            background: #f08552;
+            color: white;
+        }
+
+        .drawer-pill--special:hover {
+            background: #e07542;
+        }
+
+        /* PDF */
+        #reader {
+            position: relative;
+        }
+
+        /* 圓形半透明按鈕 */
+        .pdf-fab {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 72px;
+            height: 72px;
+            border-radius: 999px;
+
+            border: 1px solid rgba(255, 255, 255, .55);
+            background: rgba(0, 0, 0, .18);
+            backdrop-filter: blur(6px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+            z-index: 20;
+
+            transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, .18);
+        }
+
+        .pdf-fab-left {
+            left: 14px;
+        }
+
+        .pdf-fab-right {
+            right: 14px;
+        }
+
+        /* hover：上跳 + 更亮一點 */
+        .pdf-fab:hover {
+            transform: translateY(calc(-50% - 6px));
+            background: rgba(0, 0, 0, .28);
+            box-shadow: 0 14px 26px rgba(0, 0, 0, .22);
+        }
+
+        /* 按下：回彈一點 */
+        .pdf-fab:active {
+            transform: translateY(calc(-50% - 2px));
+        }
+
+        /* disabled 狀態 */
+        .pdf-fab:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+            transform: translateY(-50%);
+            box-shadow: none;
+        }
+
+        /* 白色半透明箭頭（用 CSS 畫三角形） */
+        .pdf-arrow {
+            width: 0;
+            height: 0;
+            border-top: 14px solid transparent;
+            border-bottom: 14px solid transparent;
+            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .25));
+            opacity: .9;
+        }
+
+        .pdf-arrow-left {
+            border-right: 18px solid rgba(255, 255, 255, .78);
+            margin-left: -2px;
+        }
+
+        .pdf-arrow-right {
+            border-left: 18px solid rgba(255, 255, 255, .78);
+            margin-right: -2px;
+        }
+
+        /* 平板/手機略小一點 */
+        @media (max-width: 768px) {
+            .pdf-fab {
+                width: 60px;
+                height: 60px;
+            }
+
+            .pdf-arrow {
+                border-top-width: 12px;
+                border-bottom-width: 12px;
+            }
+
+            .pdf-arrow-left {
+                border-right-width: 16px;
+            }
+
+            .pdf-arrow-right {
+                border-left-width: 16px;
+            }
+        }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/"
+  }
+}
+</script>
+</head>
+
+<body class="min-h-screen pb-12 relative page_1">
+    <!-- Decorative background elements -->
+    <div
+        class="absolute top-0 left-0 w-64 h-64 bg-pink-100 rounded-full blur-3xl opacity-60 -translate-x-1/2 -translate-y-1/2 -z-10">
+    </div>
+    <div class="absolute top-40 right-0 w-80 h-80 bg-yellow-100 rounded-full blur-3xl opacity-50 translate-x-1/3 -z-10">
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 pt-6">
+        <!-- Navbar -->
+        <nav
+            class="bg-[#46a17b] rounded-full shadowDef px-6 md:px-12 py-3 flex items-center justify-between shadow-lg header relative">
+            <!-- 左側標題 -->
+            <div class="text-white tracking-wider title-cp text-3xl md:text-4xl leading-none px-2">
+                南一教材博覽會
+            </div>
+
+            <!-- 桌機/平板：tabs -->
+            <div id="nav-tabs" class="hidden lg:flex items-center gap-2">
+                <button class="nav-pill nav-pill--active">低年級</button>
+                <button class="nav-pill">中年級</button>
+                <button class="nav-pill">高年級</button>
+                <button class="nav-pill">自然</button>
+                <button class="nav-pill">社會</button>
+                <button class="nav-pill">健體/綜合</button>
+                <button class="nav-pill nav-pill--special">教材</button>
+            </div>
+
+            <!-- 手機：漢堡 -->
+            <button id="menuBtn" class="lg:hidden p-2 rounded-full bg-white/15 hover:bg-white/25 transition"
+                aria-label="開啟選單">
+                <!-- icon -->
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="text-white">
+                    <path d="M4 7H20M4 12H20M4 17H20" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+            </button>
+
+            <!-- 右上裝飾圖（如果你要保留） -->
+            <img src="/assets/page/nani_homepage_1.png" alt=""
+                class="hidden md:block absolute w-[300px] top-[10px] right-[-20px] pointer-events-none" />
+        </nav>
+
+        <!-- 手機抽屜：遮罩 -->
+        <div id="drawerOverlay"
+            class="fixed inset-0 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-200 z-40"></div>
+
+        <!-- 手機抽屜：面板（右→左滑入，70vw） -->
+        <aside id="drawer"
+            class="fixed top-0 right-0 h-full w-[70vw] max-w-[420px] bg-[#46a17b]  shadow-2xl translate-x-full transition-transform duration-300 z-50">
+            <div class="p-5 flex items-center justify-between border-b border-black/20">
+                <div class="title-cp text-white text-3xl leading-none">選單</div>
+                <button id="closeDrawerBtn" class="p-2 rounded-full bg-white/15 hover:bg-white/25 transition"
+                    aria-label="關閉選單">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 6L18 18M18 6L6 18" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="p-5 flex flex-col gap-3">
+                <button class="drawer-pill drawer-pill--active">低年級</button>
+                <button class="drawer-pill">中年級</button>
+                <button class="drawer-pill">高年級</button>
+                <button class="drawer-pill">自然</button>
+                <button class="drawer-pill">社會</button>
+                <button class="drawer-pill">健體/綜合</button>
+                <button class="drawer-pill drawer-pill--special">教材</button>
+            </div>
+        </aside>
+
+        <main class="mt-20 space-y-16">
+            <!-- Section 1: Intro -->
+            <section class="grid lg:grid-cols-2 md:grid-cols-1 gap-8 md:gap-20 mt-6">
+                <div class="mt-6">
+                    <h1 class="title-cp heading1"><img src="/assets/page/nani_homepage_title.png" alt=""
+                            class="titleImg"><span class="sd">教材</span><span class="pr">簡介本</span></h1>
+                    <p>融入生活情境! 結合學習與生活。例如生日派對情境佈題、選美大會等等，讓孩子身歷其境！</p>
+
+                </div>
+                <div class="relative mb-6 p-6 md:p-8 rounded-[50px] cardBox bg-white/80 ">
+                    <div class="flex flex-col md:flex-row md:items-center gap-4 box_1 gap-6">
+                        <img src="/assets/resources/115上國小健康與體育中年級簡介本.jpg" alt="" class="cover cursor-pointer"
+                            data-target="#introSection">
+
+                        <img src="/assets/resources/115上國小綜合活動高年級簡介本.jpg" alt="" class="cover cursor-pointer"
+                            data-target="#packSection">
+
+                        <img src="/assets/page/nani_homepage_leaf_1.png" alt="" class="boxDecro">
+                    </div>
+                </div>
+            </section>
+            <section id="introSection">
+                <div class="relative mb-6 p-6 md:p-8 rounded-[40px] border-4 border-white bg-white/80 shadow-md">
+                    <div class="flex flex-col md:flex-row md:items-center gap-4">
+                        <div class="flex items-center gap-3">
+                            <img src="/assets/page/nani_homepage_icon_star.png" alt="" class="pill-img">
+                            <div class="pill-title">
+                                <h2 class="text-3xl md:text-4xl text-[#444] tracking-wide title-cp">教材簡介本</h2>
+                            </div>
+                        </div>
+                        <p class="flex-1 leading-relaxed pl-2 md:ml-4 md:pl-6">
+                            融入生活情境！結合學習與生活。例如生日派對情境佈題、選美大會等等，讓孩子身歷其境！
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white/60 rounded-[50px] p-6 md:p-10 cardBox overflow-hidden">
+
+
+                    <div class="w-full bg-white  rounded-3xl overflow-hidden shadow-inner flex flex-col">
+
+
+                        <div id="reader-intro" class="relative w-full overflow-auto flex items-start justify-center">
+
+                            <!-- 左側浮動按鈕 -->
+                            <button id="prevBtn-intro" class="pdf-fab pdf-fab-left" type="button" aria-label="上一頁">
+                                <span class="pdf-arrow pdf-arrow-left" aria-hidden="true"></span>
+                            </button>
+
+                            <!-- 右側浮動按鈕 -->
+                            <button id="nextBtn-intro" class="pdf-fab pdf-fab-right" type="button" aria-label="下一頁">
+                                <span class="pdf-arrow pdf-arrow-right" aria-hidden="true"></span>
+                            </button>
+
+                            <canvas id="pdf-canvas-intro" class="w-full"></canvas>
+                            <!-- 你原本的 pageInfo 可以留著（可留上方或移除都行） -->
+                        </div>
+                        <div id="pageInfo-intro"
+                            class="px-4 py-3 text-center text-gray-700 text-lg font-medium border-b">—</div>
+
+                    </div>
+                    <div class="w-full flex items-start justify-center pt-4">
+
+                        <button class="nav-pill nav-pill--special">
+                            PDF 下載
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Support Materials -->
+            <section id="packSection">
+                <div class="relative mb-6 p-6 md:p-8 rounded-[40px] border-4 border-white bg-white/80 shadow-md">
+                    <div class="flex flex-col md:flex-row md:items-center gap-4">
+                        <div class="flex items-center gap-3">
+                            <img src="/assets/page/nani_homepage_icon_star.png" alt="" class="pill-img">
+                            <div class="pill-title">
+                                <h2 class="text-3xl md:text-4xl text-[#444] tracking-wide title-cp">教材配套本</h2>
+                            </div>
+                        </div>
+                        <p class="flex-1 leading-relaxed pl-2 md:ml-4 md:pl-6">
+                            融入生活情境！結合學習與生活。例如生日派對情境佈題、選美大會等等，讓孩子身歷其境！
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white/60 rounded-[50px] p-6 md:p-10 cardBox overflow-hidden">
+
+
+                    <div class="w-full bg-white  rounded-3xl overflow-hidden shadow-inner flex flex-col">
+
+
+                        <div id="reader-pack" class="relative w-full overflow-auto flex items-start justify-center">
+
+                            <!-- 左側浮動按鈕 -->
+                            <button id="prevBtn-pack" class="pdf-fab pdf-fab-left" type="button" aria-label="上一頁">
+                                <span class="pdf-arrow pdf-arrow-left" aria-hidden="true"></span>
+                            </button>
+
+                            <!-- 右側浮動按鈕 -->
+                            <button id="nextBtn-pack" class="pdf-fab pdf-fab-right" type="button" aria-label="下一頁">
+                                <span class="pdf-arrow pdf-arrow-right" aria-hidden="true"></span>
+                            </button>
+
+                            <canvas id="pdf-canvas-pack" class="w-full"></canvas>
+                            <!-- 你原本的 pageInfo 可以留著（可留上方或移除都行） -->
+                        </div>
+                        <div id="pageInfo-pack"
+                            class="px-4 py-3 text-center text-gray-700 text-lg font-medium border-b">—</div>
+
+                    </div>
+                    <div class="w-full flex items-start justify-center pt-4">
+
+                        <button class="nav-pill nav-pill--special">
+                            PDF 下載
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="mt-16 text-center">
+            <div
+                class="inline-block bg-white/50 backdrop-blur-sm px-10 py-4 rounded-full border border-white/50 text-gray-600 font-medium">
+                南一書局企業股份有限公司版權所有 ©
+            </div>
+        </footer>
+    </div>
+
+    <!-- Floating Decorative Leaf -->
+     <button id="backToTop"
+  class="fixed bottom-20 right-4 md:right-10 opacity-80 leaf-animate cursor-pointer z-50"
+  type="button" aria-label="回到頂部">
+        <svg width="60" height="80" viewBox="0 0 60 80" fill="none">
+            <path d="M30 80C30 80 5 60 5 35C5 10 30 0 30 0C30 0 55 10 55 35C55 60 30 80 30 80Z" fill="#88C5A1" />
+            <path d="M30 0V80" stroke="#fff" strokeWidth="2" />
+            <path d="M30 20L45 10M30 40L50 30M30 60L40 55M30 20L15 10M30 40L10 30M30 60L20 55" stroke="#fff"
+                strokeWidth="2" strokeLinecap="round" />
+        </svg>
+        回到頂部
+    </button>
+
+    <script src="index.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+
+        // 讓「鍵盤左右鍵」作用在最後一次點過/滑過的那個 viewer
+        let activeViewer = null;
+
+class PdfViewer {
+  constructor(opts) {
+    // required
+    this.url = opts.url;
+    this.reader = document.getElementById(opts.readerId);
+    this.canvas = document.getElementById(opts.canvasId);
+    this.ctx = this.canvas.getContext("2d");
+    this.pageInfo = document.getElementById(opts.pageInfoId);
+    this.prevBtn = document.getElementById(opts.prevBtnId);
+    this.nextBtn = document.getElementById(opts.nextBtnId);
+
+    // ✅ 新增：預設起始頁（預設 1）
+    this.startPage = Math.max(1, parseInt(opts.startPage || 1, 10));
+
+    this.pdfDoc = null;
+    this.pageNum = 1;
+    this.rendering = false;
+    this.pending = null;
+
+    // swipe
+    this.sx = 0;
+    this.sy = 0;
+    this.st = 0;
+    this.SWIPE_MIN_X = 60;
+    this.SWIPE_MAX_Y = 70;
+    this.SWIPE_MAX_TIME = 700;
+
+    // cache
+    this.pageCache = new Map(); // pageNum -> page
+
+    this.bindEvents();
+    this.load();
+  }
+
+  bindEvents() {
+    // 按鈕
+    this.prevBtn?.addEventListener("click", () => this.prevPage());
+    this.nextBtn?.addEventListener("click", () => this.nextPage());
+
+    // 讓鍵盤左右鍵控制最近操作的 viewer
+    const activate = () => {
+      activeViewer = this;
+    };
+    this.reader?.addEventListener("pointerdown", activate);
+    this.reader?.addEventListener("touchstart", activate, { passive: true });
+
+    // swipe
+    if (this.reader) {
+      this.reader.style.touchAction = "pan-y";
+
+      this.reader.addEventListener(
+        "touchstart",
+        (e) => {
+          if (e.touches.length !== 1) return;
+          this.sx = e.touches[0].clientX;
+          this.sy = e.touches[0].clientY;
+          this.st = Date.now();
+        },
+        { passive: true }
+      );
+
+      this.reader.addEventListener(
+        "touchend",
+        (e) => {
+          if (!this.pdfDoc) return;
+          const t = e.changedTouches && e.changedTouches[0];
+          if (!t) return;
+
+          const dx = t.clientX - this.sx;
+          const dy = t.clientY - this.sy;
+          const dt = Date.now() - this.st;
+
+          if (Math.abs(dy) > this.SWIPE_MAX_Y) return;
+          if (dt > this.SWIPE_MAX_TIME) return;
+
+          if (dx <= -this.SWIPE_MIN_X) this.nextPage();
+          else if (dx >= this.SWIPE_MIN_X) this.prevPage();
+        },
+        { passive: true }
+      );
+    }
+
+    // resize
+    window.addEventListener("resize", () => {
+      if (this.pdfDoc) this.queueRender(this.pageNum);
+    });
+  }
+
+  computeScale(page) {
+    const maxW = this.reader?.clientWidth || window.innerWidth;
+    const v1 = page.getViewport({ scale: 1 });
+    return Math.max(0.6, Math.min(maxW / v1.width, 3));
+  }
+
+  async load() {
+    this.pageInfo.textContent = "載入中…";
+    try {
+      this.pdfDoc = await pdfjsLib.getDocument(this.url).promise;
+
+      // ✅ 這裡就是「預設第幾頁」的關鍵
+      const initial = Math.min(this.startPage, this.pdfDoc.numPages);
+      this.pageNum = initial;
+
+      this.pageCache.clear();
+      this.pageInfo.textContent = `${this.pageNum} / ${this.pdfDoc.numPages}`;
+      this.renderPage(this.pageNum);
+    } catch (err) {
+      console.error(err);
+      this.pageInfo.textContent = "PDF 載入失敗";
+    }
+  }
+
+  async getPage(num) {
+    if (this.pageCache.has(num)) return this.pageCache.get(num);
+    const page = await this.pdfDoc.getPage(num);
+    this.pageCache.set(num, page);
+    return page;
+  }
+
+  async renderPage(num) {
+    this.rendering = true;
+
+    // 🔒 render 中鎖定按鈕 + 顯示 loading
+    if (this.prevBtn) this.prevBtn.disabled = true;
+    if (this.nextBtn) this.nextBtn.disabled = true;
+    this.pageInfo.textContent = `載入中… (${this.pageNum} / ${this.pdfDoc.numPages})`;
+
+    try {
+      const page = await this.getPage(num);
+      const scale = this.computeScale(page);
+      const viewport = page.getViewport({ scale });
+
+      this.canvas.width = Math.floor(viewport.width);
+      this.canvas.height = Math.floor(viewport.height);
+
+      await page.render({ canvasContext: this.ctx, viewport }).promise;
+
+      this.rendering = false;
+      this.pageInfo.textContent = `${this.pageNum} / ${this.pdfDoc.numPages}`;
+
+      if (this.prevBtn) this.prevBtn.disabled = this.pageNum <= 1;
+      if (this.nextBtn) this.nextBtn.disabled = this.pageNum >= this.pdfDoc.numPages;
+
+      // ⚡ 預先快取下一頁
+      const next = this.pageNum + 1;
+      if (next <= this.pdfDoc.numPages && !this.pageCache.has(next)) {
+        this.pdfDoc
+          .getPage(next)
+          .then((p) => this.pageCache.set(next, p))
+          .catch(() => {});
+      }
+
+      if (this.pending !== null) {
+        const p = this.pending;
+        this.pending = null;
+        this.queueRender(p);
+      }
+    } catch (err) {
+      this.rendering = false;
+      console.error(err);
+      this.pageInfo.textContent = "PDF 渲染失敗";
+    }
+  }
+
+  queueRender(num) {
+    if (this.rendering) this.pending = num;
+    else this.renderPage(num);
+  }
+
+  prevPage() {
+    if (!this.pdfDoc || this.pageNum <= 1) return;
+    this.pageNum--;
+    this.queueRender(this.pageNum);
+  }
+
+  nextPage() {
+    if (!this.pdfDoc || this.pageNum >= this.pdfDoc.numPages) return;
+    this.pageNum++;
+    this.queueRender(this.pageNum);
+  }
+}
+
+// ✅ 建立 viewer（想預設第 2 頁就 startPage: 2）
+const introViewer = new PdfViewer({
+  url: "/assets/pdf/115上國小健康與體育中年級簡介本.pdf",
+  readerId: "reader-intro",
+  canvasId: "pdf-canvas-intro",
+  pageInfoId: "pageInfo-intro",
+  prevBtnId: "prevBtn-intro",
+  nextBtnId: "nextBtn-intro",
+  startPage: 2,
+});
+
+const packViewer = new PdfViewer({
+  url: "/assets/pdf/115上國小綜合活動高年級簡介本.pdf",
+  readerId: "reader-pack",
+  canvasId: "pdf-canvas-pack",
+  pageInfoId: "pageInfo-pack",
+  prevBtnId: "prevBtn-pack",
+  nextBtnId: "nextBtn-pack",
+  startPage: 2,
+});
+
+// 預設讓第一個 viewer 可以用鍵盤控制（可選）
+activeViewer = introViewer;
+    </script>
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const drawer = document.getElementById('drawer');
+        const overlay = document.getElementById('drawerOverlay');
+        const closeBtn = document.getElementById('closeDrawerBtn');
+
+        function openDrawer() {
+            drawer.classList.remove('translate-x-full');
+            overlay.classList.remove('pointer-events-none');
+            overlay.classList.add('opacity-100');
+            document.body.style.overflow = 'hidden'; // 防止背景滾動
+        }
+
+        function closeDrawer() {
+            drawer.classList.add('translate-x-full');
+            overlay.classList.remove('opacity-100');
+            overlay.classList.add('pointer-events-none');
+            document.body.style.overflow = '';
+        }
+
+        menuBtn?.addEventListener('click', openDrawer);
+        closeBtn?.addEventListener('click', closeDrawer);
+        overlay?.addEventListener('click', closeDrawer);
+
+        // ESC 關閉
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeDrawer();
+        });
+
+        // 點抽屜內任何按鈕就關閉（你若要切換內容，也可以在這裡接你的 tab 邏輯）
+        drawer?.addEventListener('click', (e) => {
+            const btn = e.target.closest('button');
+            if (btn && btn.classList.contains('drawer-pill')) closeDrawer();
+        });
+    </script>
+    <script>
+        document.addEventListener('click', (e) => {
+            const img = e.target.closest('img[data-target]');
+            if (!img) return;
+
+            const sel = img.dataset.target;
+            const target = document.querySelector(sel);
+            if (!target) return;
+
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // ✅ 可選：點了封面就讓對應 viewer 變成鍵盤控制目標
+            // if (sel === '#introSection') activeViewer = introViewer;
+            // if (sel === '#packSection') activeViewer = packViewer;
+        });
+
+        const backToTopBtn = document.getElementById('backToTop');
+
+backToTopBtn?.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ✅ 可選：滑下去才顯示
+function toggleBackToTop() {
+  if (!backToTopBtn) return;
+  const show = window.scrollY > 300;
+  backToTopBtn.style.opacity = show ? '0.9' : '0';
+  backToTopBtn.style.pointerEvents = show ? 'auto' : 'none';
+}
+toggleBackToTop();
+window.addEventListener('scroll', toggleBackToTop, { passive: true });
+    </script>
+</body>
+
+</html>
