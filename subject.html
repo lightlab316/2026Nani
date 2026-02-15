@@ -82,13 +82,24 @@
 
 
     /* BG */
-    .page_1 {
-    background-image:
-        url(./assets/page/nani_homepage_bg-1.png), url(./assets/page/nani_subject_bg-1.png);
-    background-repeat: no-repeat, no-repeat;
-    background-position: 0 0, right;
-      background-size: 55% auto, 350px auto;
-    }
+.page_1 {
+  background-image:
+    url(./assets/page/nani_homepage_bg-1.png),
+    url(./assets/page/nani_subject_bg-1.png),
+    url(./assets/page/nani_subject_bg-2.png); /* ✅ 第三張：先用同一張示範，你要換圖就換這裡 */
+
+  background-repeat: no-repeat, no-repeat, no-repeat;
+
+  background-position:
+    0 0,                              /* ① 左上 */
+    right var(--life-bg-y, -9999px),  /* ② 右上：對齊生活 */
+    left var(--math-bg-y, -9999px);  /* ③ 右上：對齊數學 */
+
+  background-size:
+    55% auto,
+    350px auto,
+    350px auto;
+}
 
     /* Images/Icons */
     .titleImg {
@@ -495,7 +506,7 @@
           <a href="/science.html" class="nav-pill" type="button">自然</a>
           <a href="/society.html" class="nav-pill" type="button">社會</a>
           <a href="/health.html" class="nav-pill" type="button">健體/綜合</a>
-          <a href="/others.html" class="nav-pill nav-pill--special" type="button">教材</a>
+          <a href="/others.html" class="nav-pill nav-pill--special" type="button">數位</a>
 
         </div>
 
@@ -536,7 +547,7 @@
           <a href="/science.html" class="nav-pill" type="button">自然</a>
           <a href="/society.html" class="nav-pill" type="button">社會</a>
           <a href="/health.html" class="nav-pill" type="button">健體/綜合</a>
-          <a href="/others.html" class="nav-pill nav-pill--special" type="button">教材</a>
+          <a href="/others.html" class="nav-pill nav-pill--special" type="button">數位</a>
         </div>
     </aside>
 
@@ -1388,6 +1399,26 @@ syncTopState();
       initAccordion("accordion-container-math", "math");
       initAccordion("accordion-container-life", "life");
     });
+    const lifeSection = document.getElementById('sec-life');
+const mathSection = document.getElementById('sec-math');
+
+function syncBgY() {
+  const scrollTop = window.scrollY || window.pageYOffset;
+
+  if (lifeSection) {
+    const y = lifeSection.getBoundingClientRect().top + scrollTop - 150;
+    document.documentElement.style.setProperty('--life-bg-y', `${y + 40}px`);
+  }
+
+  if (mathSection) {
+    const y = mathSection.getBoundingClientRect().top + scrollTop - 100;
+    document.documentElement.style.setProperty('--math-bg-y', `${y + 40}px`);
+  }
+}
+
+syncBgY();
+window.addEventListener('resize', syncBgY);
+window.addEventListener('scroll', syncBgY, { passive: true });
   </script>
 
 </body>
