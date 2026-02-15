@@ -482,11 +482,23 @@
         padding: 10px 12px;
       }
     }
+    /* ===== Page transition ===== */
+.page-transition {
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.page-transition.is-visible {
+  opacity: 1;
+}
+
+.page-transition.is-leaving {
+  opacity: 0;
+}
   </style>
 </head>
 
-<body class="min-h-screen pb-12 relative page_1">
-  <!-- ✅ 滑鼠靠近最上方觸發區 -->
+<body class="min-h-screen pb-12 relative page-transition">  <!-- ✅ 滑鼠靠近最上方觸發區 -->
   <div id="topRevealZone" class="top-reveal-zone" aria-hidden="true"></div>
 
 
@@ -1419,6 +1431,34 @@ function syncBgY() {
 syncBgY();
 window.addEventListener('resize', syncBgY);
 window.addEventListener('scroll', syncBgY, { passive: true });
+
+// ===== Page fade in =====
+window.addEventListener('load', () => {
+  document.body.classList.add('is-visible');
+});
+
+// ===== Page fade out on link click =====
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[href]');
+  if (!link) return;
+
+  const href = link.getAttribute('href');
+
+  // 只處理同網域頁面跳轉
+  if (
+    href.startsWith('#') ||
+    href.startsWith('javascript:') ||
+    link.target === '_blank'
+  ) return;
+
+  e.preventDefault();
+
+  document.body.classList.add('is-leaving');
+
+  setTimeout(() => {
+    window.location.href = href;
+  }, 300); // 要小於 CSS transition 時間
+});
   </script>
 
 </body>
